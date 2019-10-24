@@ -1,0 +1,7 @@
+<form class="form-inline">
+  <div class="form-group">
+    <input #titleInput type="text" class="form-control"
+           aria-describedby="Search movies by title." value="Fight club">
+    <button routerLink="search/movie/{{titleInput.value}}" class="btn btn-primary">Search</button>
+  </div>
+</form>

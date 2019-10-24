@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex flex-row mt-1 mb-1">
+        <!-- Certifications -->
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" #certificationsDropdown
+           ngbDropdownToggle>PG-13</button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem *ngFor="let certification of certifications"
+            (click)="updateFilter('certification', certification.certification); certificationsDropdown.innerHTML = certification.certification"
+            ngbPopover={{certification.meaning}} triggers="mouseenter:mouseleave"
+            placement="right-top">
+            {{certification.certification}}
+          </button>
+          </div>
+        </div>
+
+        <!-- Sort -->
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" #sortDropdown
+            ngbDropdownToggle>popularity.asc</button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem *ngFor="let sort of sortBy"
+              (click)="updateFilter('sort_by', sort); sortDropdown.innerHTML = sort">
+              {{sort}}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

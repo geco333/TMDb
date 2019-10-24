@@ -1,0 +1,12 @@
+<ul *ngIf="results"
+    class="list-group list-group-flush">
+  <li #li
+      *ngFor="let result of results"
+      class="list-group-item p-1"
+      (mouseenter)="li.classList.add('active')"
+      (mouseleave)="li.classList.remove('active')">
+    <app-search-result-list-item [result]=result
+                                 (click)="getMovieDetails(result.id)">
+    </app-search-result-list-item>
+  </li>
+</ul>

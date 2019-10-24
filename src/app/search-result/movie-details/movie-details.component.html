@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <ng-container *ngIf="result">
+        <img class="d-inline-block mr-1" src={{getPoster(result.poster_path)}}>
+
+        <div class="d-inline-block ml-1">
+          <b>Release Date:</b><br/>
+          {{result.release_date}}<br/>
+          <b>Popularity:</b><br/>
+          {{result.popularity}}<br/>
+          <b>Vote Average:</b><br/>
+          {{result.vote_average}}
+        </div>
+
+        <div>
+          <b>Overview:</b><br/>
+          {{result.overview}}<br/>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="reviews && reviews.results.length > 0">
+        <b class="mt-2" >Reviews:</b><br/>
+
+        <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+          <ngb-panel *ngFor="let result of reviews.results"
+                      title={{result.author}}>
+            <ng-template ngbPanelContent>
+                {{result.content}}
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </ng-container>
+    </div>
+
+    <div class="col-3">
+      <app-selected-related-list [lists]=lists></app-selected-related-list>
+    </div>
+  </div>
+</div>

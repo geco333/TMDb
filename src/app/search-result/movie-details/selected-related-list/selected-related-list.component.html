@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ng-container *ngIf="lists">
+        <mat-list class="vh-89 overflow-auto">
+          <mat-list-item *ngFor="let result of lists.results">
+              <button mat-flat-button class="searchResultListItem"
+                      (click)="getMovies(result.id)">
+                        {{result.name}}
+              </button>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+  </div>
+</div>

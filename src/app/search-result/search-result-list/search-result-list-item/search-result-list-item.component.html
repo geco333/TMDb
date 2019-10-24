@@ -1,0 +1,14 @@
+<div>
+  <ng-template #popContent>
+    <img src={{poster}}>
+  </ng-template>
+
+  <div class="text-wrap text-left"
+      #ngbPopover="ngbPopover"
+      [ngbPopover]="popContent"
+      (mouseenter)="ngbPopover.open()"
+      (mouseleave)="ngbPopover.close()"
+      placement="right">
+      {{result.title}}
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<!-- Displaies the trending movies from results.
+  Each movies' poster is fetched from the db.
+  On click emits the movie id down to the trending componnent -->
+<div class="d-flex flex-wrap h-50 m-1 overflow-auto">
+    <img *ngFor="let result of results"
+     src={{getPoster(result)}}
+     class="m-1 cursorPointer"
+     (click)="selected.emit({id: result.id, type: result.media_type})">
+</div>
+

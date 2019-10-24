@@ -1,0 +1,25 @@
+<div class="row">
+  <div *ngIf="lists" class="col-3">
+    <app-related-lists [lists]="lists" (listMovies)="results=$event"></app-related-lists>
+  </div>
+
+  <div class="col">
+    <div *ngFor="let result of results" class="d-inline">
+      <ng-template #popoverTemplate>
+        {{result.overview}}
+        <div>
+          <button class="btn btn-link mr-2" (click)="getImdbId(result.id)">IMDB Page</button>
+          <button class="btn btn-link" (click)="getLists(result.id)">Related Lists</button>
+          <button class="btn btn-link" (click)="searchPirateBay(result.title)">Search The Pirate Bay</button>
+        </div>
+      </ng-template>
+
+      <img style="cursor: pointer;"
+        class="m-1"
+        src={{getPoster(result.poster_path)}}
+        [ngbPopover]="popoverTemplate"
+        [popoverTitle]="result.title"
+        autoClose="true">
+    </div>
+  </div>
+</div>

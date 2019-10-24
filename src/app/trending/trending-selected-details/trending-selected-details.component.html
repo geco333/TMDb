@@ -1,0 +1,19 @@
+<!-- Movie details -->
+<div *ngIf="info">
+    <b>{{info.title}}</b>
+    <p>{{info.release_date}}</p>
+
+    <p>{{info.overview}}</p>
+
+    <div>Popularity: {{info.popularity}}</div>
+    <div>Vote average: {{info.vote_average}}</div>
+
+    <br/>
+
+    <a *ngIf="info.homepage"
+        href="{{info.homepage}}/"
+        target="_blank">Homepage</a><br/>
+    <a *ngIf="info.imdb_id"
+        href="https://www.imdb.com/title/{{info.imdb_id}}/"
+        target="_blank">IMDB Page</a>
+  </div>

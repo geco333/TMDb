@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DiscoverFiltersComponent implements OnInit {
   certifications;
+  genres;
   // tslint:disable-next-line: max-line-length
   sortBy = ['popularity.asc', 'popularity.desc', 'release_date.asc', 'release_date.desc', 'revenue.asc', 'revenue.desc', 'primary_release_date.asc', 'primary_release_date.desc', 'original_title.asc', 'original_title.desc', 'vote_average.asc', 'vote_average.desc', 'vote_count.asc', 'vote_count.desc'];
   filters = {};
@@ -19,8 +20,18 @@ export class DiscoverFiltersComponent implements OnInit {
 
   ngOnInit() {
     this.getCertifications();
+    this.getGenres();
+
     this.updateFilter('certification', 'PG-13');
     this.updateFilter('sort_by', 'popularity.asc');
+    this.updateFilter('include_adult', 'false');
+  }
+
+getGenres() {
+    const urlParams = 'genre/movie/list';
+    const queryParams = 'language=en-US';
+
+    this.connection.queryDb(urlParams, queryParams).subscribe(result => this.genres = result.genres);
   }
 
   getCertifications() {

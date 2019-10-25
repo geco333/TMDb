@@ -2,10 +2,46 @@
   <div class="row">
     <div class="col">
       <div class="d-flex flex-row mt-1 mb-1">
+        <!-- Genres -->
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" #genresDropdown
+            ngbDropdownToggle ngbPopover="Genres."
+            triggers="mouseenter:mouseleave">
+            Genre
+          </button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem *ngFor="let genre of genres"
+            (click)="updateFilter('with_genres', genre.id); certificationsDropdown.innerHTML = genre.name">
+            {{genre.name}}
+          </button>
+          </div>
+        </div>
+
+        <!-- Include Adult -->
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary"
+           ngbDropdownToggle
+           ngbPopover="Include adult content."
+           triggers="mouseenter:mouseleave">
+           False
+          </button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem
+             (click)="updateFilter('include_adult', true); adultDropdown.innerHTML = 'True'">
+              True
+            </button>
+            <button ngbDropdownItem
+             (click)="updateFilter('include_adult', false); adultDropdown.innerHTML = 'False'">
+              False
+            </button>
+          </div>
+        </div>
+
         <!-- Certifications -->
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-primary" #certificationsDropdown
-           ngbDropdownToggle>PG-13</button>
+           ngbDropdownToggle ngbPopover="Certification."
+           triggers="mouseenter:mouseleave">PG-13</button>
           <div ngbDropdownMenu>
             <button ngbDropdownItem *ngFor="let certification of certifications"
             (click)="updateFilter('certification', certification.certification); certificationsDropdown.innerHTML = certification.certification"
@@ -19,7 +55,8 @@
         <!-- Sort -->
         <div ngbDropdown class="d-inline-block">
           <button class="btn btn-outline-primary" #sortDropdown
-            ngbDropdownToggle>popularity.asc</button>
+            ngbDropdownToggle ngbDropdownToggle ngbPopover="Sort by."
+            triggers="mouseenter:mouseleave">popularity.asc</button>
           <div ngbDropdownMenu>
             <button ngbDropdownItem *ngFor="let sort of sortBy"
               (click)="updateFilter('sort_by', sort); sortDropdown.innerHTML = sort">
